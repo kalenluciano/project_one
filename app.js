@@ -52,4 +52,26 @@ const initializeGame = () => {
 	createItem();
 };
 
+const moveSnake = (event) => {
+	let eventKey = event.key;
+	switch (eventKey) {
+		case 'ArrowLeft':
+			moveLeft();
+			break;
+		case 'ArrowUp':
+			moveUp();
+			break;
+		case 'ArrowRight':
+			moveRight();
+			break;
+		case 'ArrowDown':
+			moveDown();
+			break;
+		default:
+			break;
+	}
+};
+
 initializeGame();
+
+document.body.addEventListener('keydown', (event) => moveSnake(event));
