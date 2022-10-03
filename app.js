@@ -2,6 +2,8 @@ const gameBoard = document.querySelector('.game-board');
 const numberOfSquares = 256;
 const numberOfSquaresIndex = numberOfSquares - 1;
 const rowLength = Math.sqrt(numberOfSquares);
+const allSquares = [];
+const emptySquares = [];
 const snakeSquares = [];
 let numberOfSnakeSquares = 3;
 let itemSquare;
@@ -15,12 +17,12 @@ const createGameBoard = () => {
 		gameBoard.appendChild(square);
 	}
 	const squares = document.querySelectorAll('.square');
-	const allSquares = [...squares];
-	return allSquares;
+	allSquares.push(...squares);
 };
 
-const allSquares = createGameBoard();
-const emptySquares = [...allSquares];
+const getAllEmptySquares = () => {
+	emptySquares.push(...allSquares);
+};
 
 const createSnake = () => {
 	let snakeHead = Math.floor(numberOfSquares / 2) + rowLength / 4;
@@ -37,14 +39,17 @@ const createSnake = () => {
 const createItem = () => {
 	itemSquareNumber =
 		Math.floor(numberOfSquares / 2) + rowLength / 2 + rowLength / 4;
-	console.log(itemSquareNumber);
-	console.log(allSquares);
 	itemSquare = allSquares[itemSquareNumber];
 	itemSquare.classList.add('apple');
 	itemSquare.classList.remove('square');
 	emptySquares.splice(emptySquares.indexOf(itemSquare), 1);
-	console.log(emptySquares);
 };
 
-createSnake();
-createItem();
+const initializeGame = () => {
+	createGameBoard();
+	getAllEmptySquares();
+	createSnake();
+	createItem();
+};
+
+initializeGame();
