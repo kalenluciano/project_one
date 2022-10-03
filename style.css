@@ -19,5 +19,11 @@ body, html {
 }
 
 .snake {
+    border: 1px solid black;
     background-color: aliceblue;
+}
+
+.apple {
+    border: 1px solid black;
+    background-color: red;
 }
