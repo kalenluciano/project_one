@@ -134,7 +134,10 @@ const moveLeft = () => {
 	if (itemCapture) {
 		processItemCapture();
 	}
-	if (snakeHeadNumber % rowLength === 0) {
+	if (
+		snakeHeadNumber % rowLength === 0 ||
+		checkSnakeHitItself(squareNumber)
+	) {
 		clearInterval(intervalID);
 		return (gameOver = true);
 	}
@@ -150,7 +153,7 @@ const moveRight = () => {
 	if (itemCapture) {
 		processItemCapture();
 	}
-	if (squareNumber % rowLength === 0) {
+	if (squareNumber % rowLength === 0 || checkSnakeHitItself(squareNumber)) {
 		clearInterval(intervalID);
 		return (gameOver = true);
 	}
@@ -166,7 +169,7 @@ const moveUp = () => {
 	if (itemCapture) {
 		processItemCapture();
 	}
-	if (squareNumber < 0) {
+	if (squareNumber < 0 || checkSnakeHitItself(squareNumber)) {
 		clearInterval(intervalID);
 		return (gameOver = true);
 	}
@@ -182,7 +185,10 @@ const moveDown = () => {
 	if (itemCapture) {
 		processItemCapture();
 	}
-	if (squareNumber > numberOfSquaresIndex) {
+	if (
+		squareNumber > numberOfSquaresIndex ||
+		checkSnakeHitItself(squareNumber)
+	) {
 		clearInterval(intervalID);
 		return (gameOver = true);
 	}
@@ -230,6 +236,17 @@ const changeItemPosition = () => {
 const addAPointToScore = () => {
 	score += 1;
 	scoreDisplay.innerText = score;
+};
+
+// End game functions
+
+const checkSnakeHitItself = (nextSquare) => {
+	for (let snakeSquareNumber of snakeSquareNumbers) {
+		if (snakeSquareNumber === nextSquare) {
+			return true;
+		}
+	}
+	return false;
 };
 
 // Game actions
