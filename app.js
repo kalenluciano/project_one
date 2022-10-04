@@ -13,6 +13,7 @@ let snakeHeadNumber;
 let numberOfSnakeSquares = 3;
 let itemSquare;
 let itemSquareNumber;
+let intervalID;
 
 // Snake initialize functions
 
@@ -94,18 +95,19 @@ const convertSnakeToSquare = (square) => {
 
 const moveSnake = (event) => {
 	let eventKey = event.key;
+	clearInterval(intervalID);
 	switch (eventKey) {
 		case 'ArrowLeft':
-			moveLeft();
+			intervalID = setInterval(moveLeft, 100);
 			break;
 		case 'ArrowUp':
-			moveUp();
+			intervalID = setInterval(moveUp, 100);
 			break;
 		case 'ArrowRight':
-			moveRight();
+			intervalID = setInterval(moveRight, 100);
 			break;
 		case 'ArrowDown':
-			moveDown();
+			intervalID = setInterval(moveDown, 100);
 			break;
 		default:
 			break;
