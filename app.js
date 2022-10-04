@@ -259,8 +259,41 @@ const gameOverAlert = () => {
 	gameOverDisplay.style.display = 'block';
 };
 
+const removeGameOverAlert = () => {
+	gameOverDisplay.style.display = 'none';
+};
+
+const makeAllSquaresEmpty = () => {
+	for (let square of allSquares) {
+		square.removeAttribute('class');
+		square.setAttribute('class', 'square');
+	}
+};
+
+const resetEmptySquares = () => {
+	emptySquares.splice(0, emptySquares.length);
+	getAllEmptySquares();
+};
+
+const resetSnake = () => {
+	snakeSquareNumbers.splice(0, snakeSquareNumbers.length);
+	snakeSquares.splice(0, snakeSquares.length);
+	createSnake();
+};
+
+const resetScore = () => {
+	score = 0;
+	scoreDisplay.innerText = score;
+};
+
 const replay = () => {
-	console.log('hi');
+	makeAllSquaresEmpty();
+	resetEmptySquares();
+	resetSnake();
+	createItem();
+	resetScore();
+	removeGameOverAlert();
+	gameOver = false;
 };
 
 // Game actions
