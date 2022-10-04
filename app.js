@@ -1,6 +1,7 @@
 // Global variables
 
 const gameBoard = document.querySelector('.game-board');
+const scoreDisplay = document.querySelector('.score-points');
 const numberOfSquares = 256;
 const numberOfSquaresIndex = numberOfSquares - 1;
 const rowLength = Math.sqrt(numberOfSquares);
@@ -14,6 +15,7 @@ let numberOfSnakeSquares = 3;
 let itemSquare;
 let itemSquareNumber;
 let intervalID;
+let score = 0;
 
 // Snake initialize functions
 
@@ -50,8 +52,7 @@ const createItem = () => {
 	itemSquareNumber =
 		Math.floor(numberOfSquares / 2) + rowLength / 2 + rowLength / 4;
 	itemSquare = allSquares[itemSquareNumber];
-	itemSquare.classList.add('apple');
-	itemSquare.classList.remove('square');
+	convertSquareToItem(itemSquare);
 	emptySquares.splice(emptySquares.indexOf(itemSquare), 1);
 };
 
@@ -125,27 +126,84 @@ const moveSnake = (event) => {
 };
 
 const moveLeft = () => {
-	popSnakeTail();
+	if (checkItemCapture()) {
+		processItemCapture();
+	} else {
+		popSnakeTail();
+	}
 	let squareNumber = snakeHeadNumber - 1;
 	unshiftSnakeHead(squareNumber);
 };
 
 const moveRight = () => {
-	popSnakeTail();
+	if (checkItemCapture()) {
+		processItemCapture();
+	} else {
+		popSnakeTail();
+	}
 	let squareNumber = snakeHeadNumber + 1;
 	unshiftSnakeHead(squareNumber);
 };
 
 const moveUp = () => {
-	popSnakeTail();
+	if (checkItemCapture()) {
+		processItemCapture();
+	} else {
+		popSnakeTail();
+	}
 	let squareNumber = snakeHeadNumber - rowLength;
 	unshiftSnakeHead(squareNumber);
 };
 
 const moveDown = () => {
-	popSnakeTail();
+	if (checkItemCapture()) {
+		processItemCapture();
+	} else {
+		popSnakeTail();
+	}
 	let squareNumber = snakeHeadNumber + rowLength;
 	unshiftSnakeHead(squareNumber);
+};
+
+// Item capture functions
+
+const convertSquareToItem = (square) => {
+	square.classList.add('apple');
+	square.classList.remove('square');
+};
+
+const convertItemToSquare = (square) => {
+	square.classList.add('square');
+	square.classList.remove('apple');
+};
+
+const randomNumberGenerator = () => {
+	return Math.floor(Math.random() * emptySquares.length);
+};
+
+const checkItemCapture = () => {
+	if (snakeHeadNumber === itemSquareNumber) {
+		return true;
+	}
+};
+
+const processItemCapture = () => {
+	convertItemToSquare(itemSquare);
+	changeItemPosition();
+	console.log(itemSquare);
+	addAPointToScore();
+};
+
+const changeItemPosition = () => {
+	itemSquare = emptySquares[randomNumberGenerator()];
+	itemSquareNumber = itemSquare.id;
+	convertSquareToItem(itemSquare);
+	emptySquares.splice(emptySquares.indexOf(itemSquare), 1);
+};
+
+const addAPointToScore = () => {
+	score += 1;
+	scoreDisplay.innerText = score;
 };
 
 // Game actions
