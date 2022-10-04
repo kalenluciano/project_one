@@ -95,63 +95,57 @@ const convertSnakeToSquare = (square) => {
 
 const moveSnake = (event) => {
 	let eventKey = event.key;
-	clearInterval(intervalID);
-	switch (eventKey) {
-		case 'ArrowLeft':
-			intervalID = setInterval(moveLeft, 100);
-			break;
-		case 'ArrowUp':
-			intervalID = setInterval(moveUp, 100);
-			break;
-		case 'ArrowRight':
-			intervalID = setInterval(moveRight, 100);
-			break;
-		case 'ArrowDown':
-			intervalID = setInterval(moveDown, 100);
-			break;
-		default:
-			break;
+	if (
+		eventKey === 'ArrowLeft' &&
+		snakeSquareNumbers[1] !== snakeHeadNumber - 1
+	) {
+		clearInterval(intervalID);
+		intervalID = setInterval(moveLeft, 100);
+	} else if (
+		eventKey === 'ArrowUp' &&
+		snakeSquareNumbers[1] !== snakeHeadNumber - rowLength
+	) {
+		clearInterval(intervalID);
+		intervalID = setInterval(moveUp, 100);
+	} else if (
+		eventKey === 'ArrowRight' &&
+		snakeSquareNumbers[1] !== snakeHeadNumber + 1
+	) {
+		clearInterval(intervalID);
+		intervalID = setInterval(moveRight, 100);
+	} else if (
+		eventKey === 'ArrowDown' &&
+		snakeSquareNumbers[1] !== snakeHeadNumber + rowLength
+	) {
+		clearInterval(intervalID);
+		intervalID = setInterval(moveDown, 100);
+	} else {
+		return;
 	}
 };
 
 const moveLeft = () => {
-	if (snakeSquareNumbers[1] === snakeHeadNumber - 1) {
-		return;
-	} else {
-		popSnakeTail();
-		let squareNumber = snakeHeadNumber - 1;
-		unshiftSnakeHead(squareNumber);
-	}
+	popSnakeTail();
+	let squareNumber = snakeHeadNumber - 1;
+	unshiftSnakeHead(squareNumber);
 };
 
 const moveRight = () => {
-	if (snakeSquareNumbers[1] === snakeHeadNumber + 1) {
-		return;
-	} else {
-		popSnakeTail();
-		let squareNumber = snakeHeadNumber + 1;
-		unshiftSnakeHead(squareNumber);
-	}
+	popSnakeTail();
+	let squareNumber = snakeHeadNumber + 1;
+	unshiftSnakeHead(squareNumber);
 };
 
 const moveUp = () => {
-	if (snakeSquareNumbers[1] === snakeHeadNumber - rowLength) {
-		return;
-	} else {
-		popSnakeTail();
-		let squareNumber = snakeHeadNumber - rowLength;
-		unshiftSnakeHead(squareNumber);
-	}
+	popSnakeTail();
+	let squareNumber = snakeHeadNumber - rowLength;
+	unshiftSnakeHead(squareNumber);
 };
 
 const moveDown = () => {
-	if (snakeSquareNumbers[1] === snakeHeadNumber + rowLength) {
-		return;
-	} else {
-		popSnakeTail();
-		let squareNumber = snakeHeadNumber + rowLength;
-		unshiftSnakeHead(squareNumber);
-	}
+	popSnakeTail();
+	let squareNumber = snakeHeadNumber + rowLength;
+	unshiftSnakeHead(squareNumber);
 };
 
 // Game actions
