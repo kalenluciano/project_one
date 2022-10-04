@@ -127,56 +127,64 @@ const moveSnake = (event) => {
 
 const moveLeft = () => {
 	let squareNumber = snakeHeadNumber - 1;
-	if (checkItemCapture()) {
+	let itemCapture = checkItemCapture();
+	if (itemCapture) {
 		processItemCapture();
-	} else {
-		popSnakeTail();
 	}
 	if (snakeHeadNumber % rowLength === 0) {
 		clearInterval(intervalID);
 		return;
+	}
+	if (!itemCapture) {
+		popSnakeTail();
 	}
 	unshiftSnakeHead(squareNumber);
 };
 
 const moveRight = () => {
 	let squareNumber = snakeHeadNumber + 1;
-	if (checkItemCapture()) {
+	let itemCapture = checkItemCapture();
+	if (itemCapture) {
 		processItemCapture();
-	} else {
-		popSnakeTail();
 	}
 	if (squareNumber % rowLength === 0) {
 		clearInterval(intervalID);
 		return;
+	}
+	if (!itemCapture) {
+		popSnakeTail();
 	}
 	unshiftSnakeHead(squareNumber);
 };
 
 const moveUp = () => {
 	let squareNumber = snakeHeadNumber - rowLength;
-	if (checkItemCapture()) {
+	let itemCapture = checkItemCapture();
+	if (itemCapture) {
 		processItemCapture();
-	} else {
-		popSnakeTail();
 	}
 	if (squareNumber < 0) {
 		clearInterval(intervalID);
 		return;
+	}
+	if (!itemCapture) {
+		popSnakeTail();
 	}
 	unshiftSnakeHead(squareNumber);
 };
 
 const moveDown = () => {
 	let squareNumber = snakeHeadNumber + rowLength;
-	if (checkItemCapture()) {
+	let itemCapture = checkItemCapture();
+	if (itemCapture) {
 		processItemCapture();
-	} else {
-		popSnakeTail();
 	}
 	if (squareNumber > numberOfSquaresIndex) {
 		clearInterval(intervalID);
 		return;
+	}
+	if (!itemCapture) {
+		popSnakeTail();
 	}
 	unshiftSnakeHead(squareNumber);
 };
