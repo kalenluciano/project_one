@@ -27,3 +27,7 @@ body, html {
     border: 1px solid black;
     background-color: red;
 }
+
+.game-over {
+    display: none;
+}

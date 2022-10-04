@@ -2,6 +2,8 @@
 
 const gameBoard = document.querySelector('.game-board');
 const scoreDisplay = document.querySelector('.score-points');
+const gameOverDisplay = document.querySelector('.game-over');
+const replayButton = document.querySelector('.play-again');
 const numberOfSquares = 256;
 const numberOfSquaresIndex = numberOfSquares - 1;
 const rowLength = Math.sqrt(numberOfSquares);
@@ -139,7 +141,8 @@ const moveLeft = () => {
 		checkSnakeHitItself(squareNumber)
 	) {
 		clearInterval(intervalID);
-		return (gameOver = true);
+		gameOver = true;
+		return gameOverAlert();
 	}
 	if (!itemCapture) {
 		popSnakeTail();
@@ -155,7 +158,8 @@ const moveRight = () => {
 	}
 	if (squareNumber % rowLength === 0 || checkSnakeHitItself(squareNumber)) {
 		clearInterval(intervalID);
-		return (gameOver = true);
+		gameOver = true;
+		return gameOverAlert();
 	}
 	if (!itemCapture) {
 		popSnakeTail();
@@ -171,7 +175,8 @@ const moveUp = () => {
 	}
 	if (squareNumber < 0 || checkSnakeHitItself(squareNumber)) {
 		clearInterval(intervalID);
-		return (gameOver = true);
+		gameOver = true;
+		return gameOverAlert();
 	}
 	if (!itemCapture) {
 		popSnakeTail();
@@ -190,7 +195,8 @@ const moveDown = () => {
 		checkSnakeHitItself(squareNumber)
 	) {
 		clearInterval(intervalID);
-		return (gameOver = true);
+		gameOver = true;
+		return gameOverAlert();
 	}
 	if (!itemCapture) {
 		popSnakeTail();
@@ -249,6 +255,14 @@ const checkSnakeHitItself = (nextSquare) => {
 	return false;
 };
 
+const gameOverAlert = () => {
+	gameOverDisplay.style.display = 'block';
+};
+
+const replay = () => {
+	console.log('hi');
+};
+
 // Game actions
 
 initializeGame();
@@ -256,3 +270,4 @@ initializeGame();
 // Event listeners
 
 document.body.addEventListener('keydown', (event) => moveSnake(event));
+replayButton.addEventListener('click', () => replay());
