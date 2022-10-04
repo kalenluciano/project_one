@@ -9,6 +9,7 @@ const allSquares = [];
 const emptySquares = [];
 const snakeSquares = [];
 const snakeSquareNumbers = [];
+let gameOver = false;
 let snakeHeadSquare;
 let snakeHeadNumber;
 let numberOfSnakeSquares = 3;
@@ -96,7 +97,9 @@ const convertSnakeToSquare = (square) => {
 
 const moveSnake = (event) => {
 	let eventKey = event.key;
-	if (
+	if (gameOver === true) {
+		return;
+	} else if (
 		eventKey === 'ArrowLeft' &&
 		snakeSquareNumbers[1] !== snakeHeadNumber - 1
 	) {
@@ -133,7 +136,7 @@ const moveLeft = () => {
 	}
 	if (snakeHeadNumber % rowLength === 0) {
 		clearInterval(intervalID);
-		return;
+		return (gameOver = true);
 	}
 	if (!itemCapture) {
 		popSnakeTail();
@@ -149,7 +152,7 @@ const moveRight = () => {
 	}
 	if (squareNumber % rowLength === 0) {
 		clearInterval(intervalID);
-		return;
+		return (gameOver = true);
 	}
 	if (!itemCapture) {
 		popSnakeTail();
@@ -165,7 +168,7 @@ const moveUp = () => {
 	}
 	if (squareNumber < 0) {
 		clearInterval(intervalID);
-		return;
+		return (gameOver = true);
 	}
 	if (!itemCapture) {
 		popSnakeTail();
@@ -181,7 +184,7 @@ const moveDown = () => {
 	}
 	if (squareNumber > numberOfSquaresIndex) {
 		clearInterval(intervalID);
-		return;
+		return (gameOver = true);
 	}
 	if (!itemCapture) {
 		popSnakeTail();
