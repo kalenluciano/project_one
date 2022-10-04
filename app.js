@@ -126,42 +126,58 @@ const moveSnake = (event) => {
 };
 
 const moveLeft = () => {
+	let squareNumber = snakeHeadNumber - 1;
 	if (checkItemCapture()) {
 		processItemCapture();
 	} else {
 		popSnakeTail();
 	}
-	let squareNumber = snakeHeadNumber - 1;
+	if (snakeHeadNumber % rowLength === 0) {
+		clearInterval(intervalID);
+		return;
+	}
 	unshiftSnakeHead(squareNumber);
 };
 
 const moveRight = () => {
+	let squareNumber = snakeHeadNumber + 1;
 	if (checkItemCapture()) {
 		processItemCapture();
 	} else {
 		popSnakeTail();
 	}
-	let squareNumber = snakeHeadNumber + 1;
+	if (squareNumber % rowLength === 0) {
+		clearInterval(intervalID);
+		return;
+	}
 	unshiftSnakeHead(squareNumber);
 };
 
 const moveUp = () => {
+	let squareNumber = snakeHeadNumber - rowLength;
 	if (checkItemCapture()) {
 		processItemCapture();
 	} else {
 		popSnakeTail();
 	}
-	let squareNumber = snakeHeadNumber - rowLength;
+	if (squareNumber < 0) {
+		clearInterval(intervalID);
+		return;
+	}
 	unshiftSnakeHead(squareNumber);
 };
 
 const moveDown = () => {
+	let squareNumber = snakeHeadNumber + rowLength;
 	if (checkItemCapture()) {
 		processItemCapture();
 	} else {
 		popSnakeTail();
 	}
-	let squareNumber = snakeHeadNumber + rowLength;
+	if (squareNumber > numberOfSquaresIndex) {
+		clearInterval(intervalID);
+		return;
+	}
 	unshiftSnakeHead(squareNumber);
 };
 
