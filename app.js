@@ -190,13 +190,12 @@ const checkItemCapture = () => {
 const processItemCapture = () => {
 	convertItemToSquare(itemSquare);
 	changeItemPosition();
-	console.log(itemSquare);
 	addAPointToScore();
 };
 
 const changeItemPosition = () => {
 	itemSquare = emptySquares[randomNumberGenerator()];
-	itemSquareNumber = itemSquare.id;
+	itemSquareNumber = parseInt(itemSquare.id, 10);
 	convertSquareToItem(itemSquare);
 	emptySquares.splice(emptySquares.indexOf(itemSquare), 1);
 };
