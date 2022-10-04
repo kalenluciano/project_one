@@ -143,7 +143,7 @@ const moveSnake = (event) => {
 
 const moveLeft = () => {
 	let squareNumber = snakeHeadNumber - 1;
-	let itemCapture = checkItemCapture();
+	let itemCapture = checkItemCapture(squareNumber);
 	if (itemCapture) {
 		processItemCapture();
 	}
@@ -163,7 +163,7 @@ const moveLeft = () => {
 
 const moveRight = () => {
 	let squareNumber = snakeHeadNumber + 1;
-	let itemCapture = checkItemCapture();
+	let itemCapture = checkItemCapture(squareNumber);
 	if (itemCapture) {
 		processItemCapture();
 	}
@@ -180,7 +180,7 @@ const moveRight = () => {
 
 const moveUp = () => {
 	let squareNumber = snakeHeadNumber - rowLength;
-	let itemCapture = checkItemCapture();
+	let itemCapture = checkItemCapture(squareNumber);
 	if (itemCapture) {
 		processItemCapture();
 	}
@@ -197,7 +197,7 @@ const moveUp = () => {
 
 const moveDown = () => {
 	let squareNumber = snakeHeadNumber + rowLength;
-	let itemCapture = checkItemCapture();
+	let itemCapture = checkItemCapture(squareNumber);
 	if (itemCapture) {
 		processItemCapture();
 	}
@@ -231,8 +231,8 @@ const randomNumberGenerator = () => {
 	return Math.floor(Math.random() * emptySquares.length);
 };
 
-const checkItemCapture = () => {
-	if (snakeHeadNumber === itemSquareNumber) {
+const checkItemCapture = (squareNumber) => {
+	if (squareNumber === itemSquareNumber) {
 		return true;
 	}
 };

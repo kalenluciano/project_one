@@ -9,16 +9,14 @@ body, html {
     display: grid;
     grid-template-columns: repeat(16, 6.25%);
     grid-template-rows: repeat(16, 6.25%);
-    border: 1px solid black;
 }
 
 .square {
-    border: 1px solid black;
-    background-color: lawngreen;
+    background-color: rgba(126, 252, 0, 0.759);
 }
 
 .square[color='dark'] {
-    background-color: rgba(126, 252, 0, 0.73);
+    background-color: lawngreen;
 }
 
 .snake {
@@ -27,7 +25,6 @@ body, html {
 }
 
 .apple {
-    border: 1px solid black;
     background-color: red;
 }
 
