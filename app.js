@@ -14,7 +14,6 @@ const snakeSquareNumbers = [];
 let gameOver = false;
 let snakeHeadSquare;
 let snakeHeadNumber;
-let numberOfSnakeSquares = 3;
 let itemSquare;
 let itemSquareNumber;
 let intervalID;
@@ -22,10 +21,22 @@ let score = 0;
 
 // Snake initialize functions
 
+const setEvenOrOddAttributes = (i, square) => {
+	if (
+		(Math.floor(i / rowLength) % 2 === 0 && i % 2 === 0) ||
+		(Math.floor(i / rowLength - 1) % 2 === 0 && i % 2 === 1)
+	) {
+		square.setAttribute('color', 'dark');
+	} else {
+		square.setAttribute('color', 'light');
+	}
+};
+
 const createGameBoard = () => {
 	for (let i = 0; i < numberOfSquares; i++) {
 		let square = document.createElement('div');
 		square.classList.add('square');
+		setEvenOrOddAttributes(i, square);
 		square.setAttribute('id', `${i}`);
 		gameBoard.appendChild(square);
 	}
@@ -211,8 +222,8 @@ const convertSquareToItem = (square) => {
 	square.classList.remove('square');
 };
 
-const convertItemToSquare = (square) => {
-	square.classList.add('square');
+const convertItemToSnake = (square) => {
+	square.classList.add('snake');
 	square.classList.remove('apple');
 };
 
@@ -227,7 +238,7 @@ const checkItemCapture = () => {
 };
 
 const processItemCapture = () => {
-	convertItemToSquare(itemSquare);
+	convertItemToSnake(itemSquare);
 	changeItemPosition();
 	addAPointToScore();
 };
