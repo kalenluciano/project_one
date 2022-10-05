@@ -2,6 +2,7 @@
 
 const gameBoard = document.querySelector('.game-board');
 const scoreDisplay = document.querySelector('.score-points');
+const highScoreDisplay = document.querySelector('.high-score-points');
 const gameOverDisplay = document.querySelector('.game-over');
 const replayButton = document.querySelector('.play-again');
 const numberOfSquares = 256;
@@ -18,6 +19,7 @@ let itemSquare;
 let itemSquareNumber;
 let intervalID;
 let score = 0;
+let highScore = 0;
 
 // Snake initialize functions
 
@@ -252,6 +254,7 @@ const processItemCapture = () => {
 	removeItemFromSquare(itemSquare);
 	changeItemPosition();
 	addAPointToScore();
+	changeHighScore();
 };
 
 const changeItemPosition = () => {
@@ -264,6 +267,13 @@ const changeItemPosition = () => {
 const addAPointToScore = () => {
 	score += 1;
 	scoreDisplay.innerText = score;
+};
+
+const changeHighScore = () => {
+	if (highScore <= score) {
+		highScore = score;
+		highScoreDisplay.innerText = highScore;
+	}
 };
 
 // End game functions
