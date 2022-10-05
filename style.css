@@ -35,7 +35,7 @@ h1 {
     margin: auto 0;
 }
 
-.score-board {
+.score-board, nav {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -124,10 +124,14 @@ h1 {
     margin: 0 10px;
 }
 
-button {
+button, .home, .game-play {
     background-color: #403233;
     color: white;
     font-size: medium;
     font-weight: bold;
     border: none;
+}
+
+.home, .game-play {
+    border-radius: 10%;
 }
