@@ -3,12 +3,12 @@ body, html {
     margin: 0;
 }
 
-* {
+/* * {
     border: 1px solid black;
-}
+} */
 
 body {
-    background: #faf8ef;
+    background-color: #DFF9C7;
     display: flex;
     justify-content: center;
 }
@@ -22,12 +22,25 @@ header {
     justify-content: space-between;
 }
 
+.score-board {
+    display: flex;
+}
+
+.score, .high-score {
+    background-color: #403233;
+}
+
+h2 {
+    color: white
+}
+
 .game-board {
     width: 500px;
     height: 500px;
     display: grid;
     grid-template-columns: repeat(16, 6.25%);
     grid-template-rows: repeat(16, 6.25%);
+    border: 5px solid #403233;
 }
 
 .square {
