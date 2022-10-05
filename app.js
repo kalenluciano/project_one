@@ -288,7 +288,7 @@ const checkSnakeHitItself = (nextSquare) => {
 };
 
 const gameOverAlert = () => {
-	gameOverDisplay.style.display = 'block';
+	gameOverDisplay.style.display = 'flex';
 };
 
 const removeGameOverAlert = () => {

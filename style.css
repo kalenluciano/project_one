@@ -20,7 +20,7 @@ body {
 header {
     display: flex;
     justify-content: space-between;
-    margin: 5% 0 2% 0;
+    margin: 10% 0 4% 0;
 }
 
 .title {
@@ -31,7 +31,7 @@ header {
 h1 {
     font-family: 'Silkscreen', cursive;
     color: #403233;
-    font-size: 300%;
+    font-size: 275%;
     margin: auto 0;
 }
 
@@ -40,14 +40,14 @@ h1 {
     justify-content: space-around;
     align-items: center;
     color: white;
-    width: 45%;
+    width: 40%;
 }
 
 .score, .high-score {
     background-color: #403233;
     padding: 2.5% 2.5%;
     border-radius: 10%;
-    width: 40%;
+    width: 30%;
 }
 
 .score-board * {
@@ -56,8 +56,12 @@ h1 {
 }
 
 .game-board {
-    width: 500px;
-    height: 500px;
+    min-width: 350px;
+    max-width: 500px;
+    min-height: 350px;
+    max-height: 500px;
+    width: 90vw;
+    height: 90vw;
     display: grid;
     grid-template-columns: repeat(16, 6.25%);
     grid-template-rows: repeat(16, 6.25%);
@@ -86,5 +90,44 @@ h1 {
 
 .game-over {
     display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background-color: #40323387;
+    position: absolute;
+    min-width: 350px;
+    max-width: 500px;
+    min-height: 350px;
+    max-height: 500px;
+    width: 90vw;
+    height: 90vw;
+    text-align: center;
+}
+
+.game-over-title {
+    font-family: 'Silkscreen', cursive;
+    font-size: 200%;
+    color: white;
+}
+
+.game-over-buttons {
+    display: flex;
+    justify-content: center;
+}
+
+.home-button, .play-again {
     background-color: #403233;
+    color: white;
+    padding: 1.5% 0.5%;
+    border-radius: 10%;
+    width: 20%;
+    margin: 0 10px;
+}
+
+button {
+    background-color: #403233;
+    color: white;
+    font-size: medium;
+    font-weight: bold;
+    border: none;
 }
