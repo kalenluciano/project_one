@@ -36,7 +36,7 @@ h1 {
     justify-content: space-around;
     align-items: center;
     color: white;
-    width: 40%;
+    width: 45%;
 }
 
 .score, .high-score {
@@ -52,9 +52,9 @@ h1 {
 }
 
 .game-board {
-    min-width: 350px;
+    min-width: 300px;
     max-width: 500px;
-    min-height: 350px;
+    min-height: 300px;
     max-height: 500px;
     width: 90vw;
     height: 90vw;
@@ -91,9 +91,9 @@ h1 {
     align-content: center;
     background-color: #40323387;
     position: absolute;
-    min-width: 350px;
+    min-width: 300px;
     max-width: 500px;
-    min-height: 350px;
+    min-height: 300px;
     max-height: 500px;
     width: 90vw;
     height: 90vw;
