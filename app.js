@@ -54,7 +54,8 @@ const createSnake = () => {
 		let squareNumber = snakeHeadNumber - i;
 		snakeSquareNumbers.push(squareNumber);
 		let square = allSquares[squareNumber];
-		convertSquareToSnake(square);
+		let squareID = square.id;
+		convertSquareToSnake(square, squareID);
 		snakeSquares.push(square);
 		emptySquares.splice(emptySquares.indexOf(square), 1);
 	}
@@ -66,7 +67,8 @@ const createItem = () => {
 	itemSquareNumber =
 		Math.floor(numberOfSquares / 2) + rowLength / 2 + rowLength / 4;
 	itemSquare = allSquares[itemSquareNumber];
-	convertSquareToItem(itemSquare);
+	let itemSquareID = itemSquare.id;
+	convertSquareToItem(itemSquare, itemSquareID);
 	emptySquares.splice(emptySquares.indexOf(itemSquare), 1);
 };
 
@@ -89,21 +91,26 @@ const popSnakeTail = () => {
 const unshiftSnakeHead = (squareNumber) => {
 	snakeSquareNumbers.unshift(squareNumber);
 	let square = document.getElementById(squareNumber);
+	let squareID = square.id;
 	snakeSquares.unshift(square);
-	convertSquareToSnake(square);
+	convertSquareToSnake(square, squareID);
 	emptySquares.splice(emptySquares.indexOf(square), 1);
 	snakeHeadNumber = snakeSquareNumbers[0];
 	snakeHeadSquare = document.getElementById(snakeHeadNumber);
 };
 
-const convertSquareToSnake = (square) => {
-	square.classList.add('snake');
-	square.classList.remove('square');
+const convertSquareToSnake = (square, squareID) => {
+	const circle = document.createElement('div');
+	circle.classList.add('snake');
+	circle.setAttribute('id', `${squareID}`);
+	// square.classList.remove('square');
+	square.appendChild(circle);
 };
 
 const convertSnakeToSquare = (square) => {
-	square.classList.add('square');
-	square.classList.remove('snake');
+	square.removeChild(square.firstChild);
+	// square.classList.add('square');
+	// square.classList.remove('snake');
 };
 
 // Snake movement functions
@@ -217,14 +224,18 @@ const moveDown = () => {
 
 // Item capture functions
 
-const convertSquareToItem = (square) => {
-	square.classList.add('apple');
-	square.classList.remove('square');
+const convertSquareToItem = (square, squareID) => {
+	const circle = document.createElement('div');
+	circle.classList.add('apple');
+	circle.setAttribute('id', `${squareID}`);
+	// square.classList.remove('square');
+	square.appendChild(circle);
 };
 
-const convertItemToSnake = (square) => {
-	square.classList.add('snake');
-	square.classList.remove('apple');
+const removeItemFromSquare = (square) => {
+	square.removeChild(square.firstChild);
+	// square.classList.add('snake');
+	// square.classList.remove('apple');
 };
 
 const randomNumberGenerator = () => {
@@ -238,7 +249,7 @@ const checkItemCapture = (squareNumber) => {
 };
 
 const processItemCapture = () => {
-	convertItemToSnake(itemSquare);
+	removeItemFromSquare(itemSquare);
 	changeItemPosition();
 	addAPointToScore();
 };
@@ -278,6 +289,9 @@ const makeAllSquaresEmpty = () => {
 	for (let square of allSquares) {
 		square.removeAttribute('class');
 		square.setAttribute('class', 'square');
+		if (square.hasChildNodes()) {
+			square.removeChild(square.firstChild);
+		}
 	}
 };
 

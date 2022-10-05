@@ -21,10 +21,14 @@ body, html {
 
 .snake {
     background-color: blueviolet;
+    border-radius: 75%;
+    height: 100%;
 }
 
 .apple {
     background-color: red;
+    border-radius: 75%;
+    height: 100%;
 }
 
 .game-over {
