@@ -3,6 +3,25 @@ body, html {
     margin: 0;
 }
 
+* {
+    border: 1px solid black;
+}
+
+body {
+    background: #faf8ef;
+    display: flex;
+    justify-content: center;
+}
+
+.content {
+    max-width: 500px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+}
+
 .game-board {
     width: 500px;
     height: 500px;
@@ -12,11 +31,11 @@ body, html {
 }
 
 .square {
-    background-color: rgba(126, 252, 0, 0.759);
+    background-color: hsla(90, 100%, 55%, 1);
 }
 
 .square[color='dark'] {
-    background-color: lawngreen;
+    background-color: hsla(90, 100%, 49%, 1);
 }
 
 .snake {
