@@ -20,6 +20,10 @@ let itemSquareNumber;
 let intervalID;
 let score = 0;
 let highScore = 0;
+let touchStartX = 0;
+let touchEndX = 0;
+let touchStartY = 0;
+let touchEndY = 0;
 
 // Snake initialize functions
 
@@ -331,6 +335,54 @@ const replay = () => {
 	gameOver = false;
 };
 
+// Mobile friendly event listener functions
+
+const updateTouchStart = (event) => {
+	touchStartX = event.changedTouches[0].screenX;
+	touchStartY = event.changedTouches[0].screenY;
+};
+
+const handleTouchEnd = (event) => {
+	touchEndX = event.changedTouches[0].screenX;
+	touchEndY = event.changedTouches[0].screenY;
+	calculateTouches();
+};
+
+const calculateTouches = () => {
+	let xDiff = touchStartX - touchEndX;
+	let yDiff = touchStartY - touchEndY;
+	if (gameOver === true) {
+		return;
+	}
+	if (Math.abs(xDiff) > Math.abs(yDiff)) {
+		if (xDiff < 0 && snakeSquareNumbers[1] !== snakeHeadNumber + 1) {
+			clearInterval(intervalID);
+			intervalID = setInterval(moveRight, 100);
+		} else if (xDiff > 0 && snakeSquareNumbers[1] !== snakeHeadNumber - 1) {
+			clearInterval(intervalID);
+			intervalID = setInterval(moveLeft, 100);
+		} else {
+			return;
+		}
+	} else {
+		if (
+			yDiff < 0 &&
+			snakeSquareNumbers[1] !== snakeHeadNumber + rowLength
+		) {
+			clearInterval(intervalID);
+			intervalID = setInterval(moveDown, 100);
+		} else if (
+			yDiff > 0 &&
+			snakeSquareNumbers[1] !== snakeHeadNumber - rowLength
+		) {
+			clearInterval(intervalID);
+			intervalID = setInterval(moveUp, 100);
+		} else {
+			return;
+		}
+	}
+};
+
 // Game actions
 
 initializeGame();
@@ -338,4 +390,8 @@ initializeGame();
 // Event listeners
 
 document.body.addEventListener('keydown', (event) => moveSnake(event));
+document.body.addEventListener('touchstart', (event) =>
+	updateTouchStart(event)
+);
+document.body.addEventListener('touchend', (event) => handleTouchEnd(event));
 replayButton.addEventListener('click', () => replay());
