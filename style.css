@@ -3,10 +3,6 @@ body, html {
     margin: 0;
 }
 
-/* * {
-    border: 1px solid black;
-} */
-
 body {
     background-color: #DFF9C7;
     display: flex;
@@ -134,4 +130,17 @@ button, .home, .game-play {
 
 .home, .game-play {
     border-radius: 10%;
+}
+
+.instructions {
+    margin: 5%;
+    color:#403233;
+}
+
+.instructions > h2 {
+    text-align: center;
+}
+
+.instructions > ul {
+    font-size: 125%;
 }
