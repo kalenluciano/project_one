@@ -14,24 +14,45 @@ body {
 }
 
 .content {
-    max-width: 500px;
+    max-width: 550px;
 }
 
 header {
     display: flex;
     justify-content: space-between;
+    margin: 5% 0 2% 0;
+}
+
+.title {
+    width: 45%;
+    display: flex;
+}
+
+h1 {
+    font-family: 'Silkscreen', cursive;
+    color: #403233;
+    font-size: 300%;
+    margin: auto 0;
 }
 
 .score-board {
     display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+    width: 45%;
 }
 
 .score, .high-score {
     background-color: #403233;
+    padding: 2.5% 2.5%;
+    border-radius: 10%;
+    width: 40%;
 }
 
-h2 {
-    color: white
+.score-board * {
+    margin: 0;
+    text-align: center;
 }
 
 .game-board {
@@ -65,4 +86,5 @@ h2 {
 
 .game-over {
     display: none;
+    background-color: #403233;
 }
