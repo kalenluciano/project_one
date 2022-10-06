@@ -31,6 +31,18 @@ h1 {
     margin: auto 0;
 }
 
+.home-title {
+    margin: auto 5%;
+}
+
+nav {
+    margin: auto 2%;
+}
+
+.home-footer {
+    margin: auto 3%;
+}
+
 .score-board, nav {
     display: flex;
     justify-content: space-around;
