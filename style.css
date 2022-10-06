@@ -86,6 +86,13 @@ h1 {
 
 .game-over {
     display: none;
+}
+
+.choose-level {
+    display: flex;
+}
+
+.game-over, .choose-level {
     flex-direction: column;
     justify-content: center;
     align-content: center;
@@ -100,18 +107,18 @@ h1 {
     text-align: center;
 }
 
-.game-over-title {
+.game-over-title, .choose-level-title {
     font-family: 'Silkscreen', cursive;
     font-size: 200%;
     color: white;
 }
 
-.game-over-buttons {
+.game-over-buttons, .choose-level-buttons {
     display: flex;
     justify-content: center;
 }
 
-.home-button, .play-again {
+.home-button, .play-again, .choose-level-buttons > button {
     background-color: #403233;
     color: white;
     padding: 1.5% 0.5%;
