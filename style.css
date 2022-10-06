@@ -91,6 +91,10 @@ nav {
     height: 100%;
 }
 
+.eyes {
+    height: 50%;
+}
+
 .apple {
     border-radius: 75%;
     height: 100%;
