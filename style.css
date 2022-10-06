@@ -124,7 +124,13 @@ h1 {
     padding: 1.5% 0.5%;
     border-radius: 10%;
     width: 20%;
-    margin: 0 10px;
+    margin: 5px 10px;
+}
+
+.choose-different-level {
+    padding: 1.5% 1.5%;
+    border-radius: 10%;
+    margin: 3%;
 }
 
 button, .home, .game-play {

@@ -5,6 +5,11 @@ const scoreDisplay = document.querySelector('.score-points');
 const highScoreDisplay = document.querySelector('.high-score-points');
 const gameOverDisplay = document.querySelector('.game-over');
 const replayButton = document.querySelector('.play-again');
+const chooseLevelButtons = document.querySelectorAll(
+	'.choose-level-buttons > button'
+);
+const differentLevelButton = document.querySelector('.choose-different-level');
+const chooseLevelDisplay = document.querySelector('.choose-level');
 const numberOfSquares = 256;
 const numberOfSquaresIndex = numberOfSquares - 1;
 const rowLength = Math.sqrt(numberOfSquares);
@@ -12,7 +17,7 @@ const allSquares = [];
 const emptySquares = [];
 const snakeSquares = [];
 const snakeSquareNumbers = [];
-let gameOver = false;
+let gameOver = true;
 let snakeHeadSquare;
 let snakeHeadNumber;
 let itemSquare;
@@ -20,6 +25,7 @@ let itemSquareNumber;
 let intervalID;
 let score = 0;
 let highScore = 0;
+let speed;
 let touchStartX = 0;
 let touchEndX = 0;
 let touchStartY = 0;
@@ -130,25 +136,25 @@ const moveSnake = (event) => {
 		snakeSquareNumbers[1] !== snakeHeadNumber - 1
 	) {
 		clearInterval(intervalID);
-		intervalID = setInterval(moveLeft, 100);
+		intervalID = setInterval(moveLeft, speed);
 	} else if (
 		eventKey === 'ArrowUp' &&
 		snakeSquareNumbers[1] !== snakeHeadNumber - rowLength
 	) {
 		clearInterval(intervalID);
-		intervalID = setInterval(moveUp, 100);
+		intervalID = setInterval(moveUp, speed);
 	} else if (
 		eventKey === 'ArrowRight' &&
 		snakeSquareNumbers[1] !== snakeHeadNumber + 1
 	) {
 		clearInterval(intervalID);
-		intervalID = setInterval(moveRight, 100);
+		intervalID = setInterval(moveRight, speed);
 	} else if (
 		eventKey === 'ArrowDown' &&
 		snakeSquareNumbers[1] !== snakeHeadNumber + rowLength
 	) {
 		clearInterval(intervalID);
-		intervalID = setInterval(moveDown, 100);
+		intervalID = setInterval(moveDown, speed);
 	} else {
 		return;
 	}
@@ -357,10 +363,10 @@ const calculateTouches = () => {
 	if (Math.abs(xDiff) > Math.abs(yDiff)) {
 		if (xDiff < 0 && snakeSquareNumbers[1] !== snakeHeadNumber + 1) {
 			clearInterval(intervalID);
-			intervalID = setInterval(moveRight, 100);
+			intervalID = setInterval(moveRight, speed);
 		} else if (xDiff > 0 && snakeSquareNumbers[1] !== snakeHeadNumber - 1) {
 			clearInterval(intervalID);
-			intervalID = setInterval(moveLeft, 100);
+			intervalID = setInterval(moveLeft, speed);
 		} else {
 			return;
 		}
@@ -370,17 +376,56 @@ const calculateTouches = () => {
 			snakeSquareNumbers[1] !== snakeHeadNumber + rowLength
 		) {
 			clearInterval(intervalID);
-			intervalID = setInterval(moveDown, 100);
+			intervalID = setInterval(moveDown, speed);
 		} else if (
 			yDiff > 0 &&
 			snakeSquareNumbers[1] !== snakeHeadNumber - rowLength
 		) {
 			clearInterval(intervalID);
-			intervalID = setInterval(moveUp, 100);
+			intervalID = setInterval(moveUp, speed);
 		} else {
 			return;
 		}
 	}
+};
+
+// Choose level functions
+
+const changeLevel = () => {
+	replay();
+	disableGamePlay();
+	addChooseLevelOption();
+};
+
+const chooseLevel = (event) => {
+	let level = event.target.getAttribute('class');
+	if (level === 'easy') {
+		speed = 200;
+	} else if (level === 'normal') {
+		speed = 100;
+	} else if (level === 'hard') {
+		speed = 50;
+	} else {
+		return;
+	}
+	removeChooseLevelOptions();
+	enableGamePlay();
+};
+
+const addChooseLevelOption = () => {
+	chooseLevelDisplay.style.display = 'flex';
+};
+
+const removeChooseLevelOptions = () => {
+	chooseLevelDisplay.style.display = 'none';
+};
+
+const enableGamePlay = () => {
+	gameOver = false;
+};
+
+const disableGamePlay = () => {
+	gameOver = true;
 };
 
 // Game actions
@@ -389,9 +434,13 @@ initializeGame();
 
 // Event listeners
 
+for (let button of chooseLevelButtons) {
+	button.addEventListener('click', (event) => chooseLevel(event));
+}
 document.body.addEventListener('keydown', (event) => moveSnake(event));
 document.body.addEventListener('touchstart', (event) =>
 	updateTouchStart(event)
 );
 document.body.addEventListener('touchend', (event) => handleTouchEnd(event));
+differentLevelButton.addEventListener('click', changeLevel);
 replayButton.addEventListener('click', () => replay());
