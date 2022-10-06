@@ -234,9 +234,11 @@ const moveDown = () => {
 // Item capture functions
 
 const convertSquareToItem = (square, squareID) => {
-	const circle = document.createElement('div');
+	const circle = document.createElement('img');
 	circle.classList.add('apple');
 	circle.setAttribute('id', `${squareID}`);
+	circle.setAttribute('src', './assets/apple-image.png');
+	circle.setAttribute('alt', 'apple');
 	square.appendChild(circle);
 };
 
