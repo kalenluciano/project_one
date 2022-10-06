@@ -151,6 +151,7 @@ button, .home, .game-play {
     font-size: medium;
     font-weight: bold;
     border: none;
+    cursor: pointer;
 }
 
 .home, .game-play {
