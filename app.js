@@ -73,7 +73,7 @@ const createSnake = () => {
 	}
 	snakeHeadNumber = snakeSquareNumbers[0];
 	snakeHeadSquare = snakeSquares[0];
-	addSnakeEyesToHead(snakeHeadSquare, snakeHeadNumber);
+	addSnakeFaceToHead(snakeHeadSquare, snakeHeadNumber);
 };
 
 const createItem = () => {
@@ -108,10 +108,10 @@ const unshiftSnakeHead = (squareNumber) => {
 	snakeSquares.unshift(square);
 	convertSquareToSnake(square, squareID);
 	emptySquares.splice(emptySquares.indexOf(square), 1);
-	removeSnakeEyes(snakeHeadSquare);
+	removeSnakeFace(snakeHeadSquare);
 	snakeHeadNumber = snakeSquareNumbers[0];
 	snakeHeadSquare = document.getElementById(snakeHeadNumber);
-	addSnakeEyesToHead(snakeHeadSquare, snakeHeadNumber);
+	addSnakeFaceToHead(snakeHeadSquare, snakeHeadNumber);
 };
 
 const convertSquareToSnake = (square, squareID) => {
@@ -125,7 +125,7 @@ const convertSnakeToSquare = (square) => {
 	square.removeChild(square.firstChild);
 };
 
-const addSnakeEyesToHead = (snakeHeadSquare, snakeHeadNumber) => {
+const addSnakeFaceToHead = (snakeHeadSquare, snakeHeadNumber) => {
 	const snakeEyes = document.createElement('img');
 	snakeEyes.classList.add('eyes');
 	snakeEyes.setAttribute('id', `${snakeHeadNumber}`);
@@ -134,10 +134,8 @@ const addSnakeEyesToHead = (snakeHeadSquare, snakeHeadNumber) => {
 	snakeHeadSquare.firstChild.appendChild(snakeEyes);
 };
 
-const removeSnakeEyes = (snakeHeadSquare) => {
-	snakeHeadSquare.firstChild.removeChild(
-		snakeHeadSquare.firstChild.firstChild
-	);
+const removeSnakeFace = (snakeHeadSquare) => {
+	snakeHeadSquare.firstChild.innerHTML = '';
 };
 
 // Snake movement functions
