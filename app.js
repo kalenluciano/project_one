@@ -115,14 +115,11 @@ const convertSquareToSnake = (square, squareID) => {
 	const circle = document.createElement('div');
 	circle.classList.add('snake');
 	circle.setAttribute('id', `${squareID}`);
-	// square.classList.remove('square');
 	square.appendChild(circle);
 };
 
 const convertSnakeToSquare = (square) => {
 	square.removeChild(square.firstChild);
-	// square.classList.add('square');
-	// square.classList.remove('snake');
 };
 
 // Snake movement functions
@@ -240,14 +237,11 @@ const convertSquareToItem = (square, squareID) => {
 	const circle = document.createElement('div');
 	circle.classList.add('apple');
 	circle.setAttribute('id', `${squareID}`);
-	// square.classList.remove('square');
 	square.appendChild(circle);
 };
 
 const removeItemFromSquare = (square) => {
 	square.removeChild(square.firstChild);
-	// square.classList.add('snake');
-	// square.classList.remove('apple');
 };
 
 const randomNumberGenerator = () => {
