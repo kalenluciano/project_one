@@ -1,8 +1,6 @@
 // Global variables
 
-const gameBoard = document.querySelector('.game-board');
 const scoreDisplay = document.querySelector('.score-points');
-const highScoreDisplay = document.querySelector('.high-score-points');
 const gameOverDisplay = document.querySelector('.game-over');
 const replayButton = document.querySelector('.play-again');
 const chooseLevelButtons = document.querySelectorAll(
@@ -31,7 +29,7 @@ let touchEndX = 0;
 let touchStartY = 0;
 let touchEndY = 0;
 
-// Snake initialize functions
+// Snake game initialize functions
 
 const setEvenOrOddAttributes = (i, square) => {
 	if (
@@ -45,6 +43,7 @@ const setEvenOrOddAttributes = (i, square) => {
 };
 
 const createGameBoard = () => {
+	const gameBoard = document.querySelector('.game-board');
 	for (let i = 0; i < numberOfSquares; i++) {
 		let square = document.createElement('div');
 		square.classList.add('square');
@@ -292,6 +291,7 @@ const addAPointToScore = () => {
 };
 
 const changeHighScore = () => {
+	const highScoreDisplay = document.querySelector('.high-score-points');
 	if (highScore <= score) {
 		highScore = score;
 		highScoreDisplay.innerText = highScore;
