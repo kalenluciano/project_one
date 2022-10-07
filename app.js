@@ -13,8 +13,10 @@ const numberOfSquaresIndex = numberOfSquares - 1;
 const rowLength = Math.sqrt(numberOfSquares);
 const allSquares = [];
 const emptySquares = [];
+const snakeSquares = [];
 const snakeSquareNumbers = [];
 let gameOver = true;
+let snakeHeadSquare;
 let snakeHeadNumber;
 let itemSquare;
 let itemSquareNumber;
@@ -65,10 +67,12 @@ const createSnake = () => {
 		let square = allSquares[squareNumber];
 		let squareID = square.id;
 		convertSquareToSnake(square, squareID);
+		snakeSquares.push(square);
 		emptySquares.splice(emptySquares.indexOf(square), 1);
 	}
 	snakeHeadNumber = snakeSquareNumbers[0];
-	addSnakeFaceToHead(snakeHeadNumber);
+	snakeHeadSquare = snakeSquares[0];
+	addSnakeFaceToHead(snakeHeadSquare, snakeHeadNumber);
 };
 
 const createItem = () => {
@@ -89,20 +93,23 @@ const initializeGame = () => {
 // Common functions for snake
 
 const popSnakeTail = () => {
-	let poppedSnakeTailSquareNumber = snakeSquareNumbers.pop();
-	convertSnakeToSquare(poppedSnakeTailSquareNumber);
-	emptySquares.push(poppedSnakeTailSquareNumber);
+	snakeSquareNumbers.pop();
+	let poppedSnakeTailSquare = snakeSquares.pop();
+	convertSnakeToSquare(poppedSnakeTailSquare);
+	emptySquares.push(poppedSnakeTailSquare);
 };
 
 const unshiftSnakeHead = (squareNumber) => {
 	snakeSquareNumbers.unshift(squareNumber);
 	let square = document.getElementById(squareNumber);
 	let squareID = square.id;
+	snakeSquares.unshift(square);
 	convertSquareToSnake(square, squareID);
 	emptySquares.splice(emptySquares.indexOf(square), 1);
-	removeSnakeFace(snakeHeadNumber);
+	removeSnakeFace(snakeHeadSquare);
 	snakeHeadNumber = snakeSquareNumbers[0];
-	addSnakeFaceToHead(snakeHeadNumber);
+	snakeHeadSquare = document.getElementById(snakeHeadNumber);
+	addSnakeFaceToHead(snakeHeadSquare, snakeHeadNumber);
 };
 
 const convertSquareToSnake = (square, squareID) => {
@@ -112,13 +119,11 @@ const convertSquareToSnake = (square, squareID) => {
 	square.appendChild(circle);
 };
 
-const convertSnakeToSquare = (squareNumber) => {
-	let poppedSnakeTailSquare = document.getElementById(squareNumber);
-	poppedSnakeTailSquare.removeChild(poppedSnakeTailSquare.firstChild);
+const convertSnakeToSquare = (square) => {
+	square.removeChild(square.firstChild);
 };
 
-const addSnakeFaceToHead = (snakeHeadNumber) => {
-	let snakeHeadSquare = document.getElementById(snakeHeadNumber);
+const addSnakeFaceToHead = (snakeHeadSquare, snakeHeadNumber) => {
 	const snakeEyes = document.createElement('img');
 	snakeEyes.classList.add('eyes');
 	snakeEyes.setAttribute('id', `${snakeHeadNumber}`);
@@ -127,8 +132,7 @@ const addSnakeFaceToHead = (snakeHeadNumber) => {
 	snakeHeadSquare.firstChild.appendChild(snakeEyes);
 };
 
-const removeSnakeFace = (snakeHeadNumber) => {
-	let snakeHeadSquare = document.getElementById(snakeHeadNumber);
+const removeSnakeFace = (snakeHeadSquare) => {
 	snakeHeadSquare.firstChild.innerHTML = '';
 };
 
@@ -224,8 +228,6 @@ const convertSquareToItem = (square, squareID) => {
 	circle.setAttribute('id', `${squareID}`);
 	circle.setAttribute('src', './assets/apple-image.png'); // apple image source: https://pixabay.com/vectors/apple-fruit-red-healthy-diet-4967157/
 	circle.setAttribute('alt', 'apple');
-	if (typeof square === 'number') square = document.getElementById(square);
-	console.log(square);
 	square.appendChild(circle);
 };
 
@@ -306,6 +308,7 @@ const resetEmptySquares = () => {
 
 const resetSnake = () => {
 	snakeSquareNumbers.splice(0, snakeSquareNumbers.length);
+	snakeSquares.splice(0, snakeSquares.length);
 	createSnake();
 };
 
