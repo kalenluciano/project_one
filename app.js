@@ -76,8 +76,7 @@ const createSnake = () => {
 };
 
 const createItem = () => {
-	itemSquareNumber =
-		Math.floor(numberOfSquares / 2) + rowLength / 2 + rowLength / 4;
+	itemSquareNumber = Math.floor(numberOfSquares / 2) + (rowLength / 4) * 3;
 	itemSquare = allSquares[itemSquareNumber];
 	let itemSquareID = itemSquare.id;
 	convertSquareToItem(itemSquare, itemSquareID);
@@ -137,6 +136,12 @@ const removeSnakeFace = (snakeHeadSquare) => {
 	snakeHeadSquare.firstChild.innerHTML = '';
 };
 
+const processGameOver = () => {
+	clearInterval(intervalID);
+	gameOver = true;
+	return gameOverAlert();
+};
+
 // Snake movement functions
 
 const moveSnake = (event) => {
@@ -175,74 +180,43 @@ const moveSnake = (event) => {
 const moveLeft = () => {
 	let squareNumber = snakeHeadNumber - 1;
 	let itemCapture = checkItemCapture(squareNumber);
-	if (itemCapture) {
-		processItemCapture();
-	}
-	if (
-		snakeHeadNumber % rowLength === 0 ||
-		checkSnakeHitItself(squareNumber)
-	) {
-		clearInterval(intervalID);
-		gameOver = true;
-		return gameOverAlert();
-	}
-	if (!itemCapture) {
-		popSnakeTail();
-	}
+	if (itemCapture) processItemCapture();
+	if (snakeHeadNumber % rowLength === 0 || checkSnakeHitItself(squareNumber))
+		return processGameOver();
+	if (!itemCapture) popSnakeTail();
 	unshiftSnakeHead(squareNumber);
 };
 
 const moveRight = () => {
 	let squareNumber = snakeHeadNumber + 1;
 	let itemCapture = checkItemCapture(squareNumber);
-	if (itemCapture) {
-		processItemCapture();
-	}
-	if (squareNumber % rowLength === 0 || checkSnakeHitItself(squareNumber)) {
-		clearInterval(intervalID);
-		gameOver = true;
-		return gameOverAlert();
-	}
-	if (!itemCapture) {
-		popSnakeTail();
-	}
+	if (itemCapture) processItemCapture();
+	if (squareNumber % rowLength === 0 || checkSnakeHitItself(squareNumber))
+		return processGameOver();
+	if (!itemCapture) popSnakeTail();
 	unshiftSnakeHead(squareNumber);
 };
 
 const moveUp = () => {
 	let squareNumber = snakeHeadNumber - rowLength;
 	let itemCapture = checkItemCapture(squareNumber);
-	if (itemCapture) {
-		processItemCapture();
-	}
-	if (squareNumber < 0 || checkSnakeHitItself(squareNumber)) {
-		clearInterval(intervalID);
-		gameOver = true;
-		return gameOverAlert();
-	}
-	if (!itemCapture) {
-		popSnakeTail();
-	}
+	if (itemCapture) processItemCapture();
+	if (squareNumber < 0 || checkSnakeHitItself(squareNumber))
+		return processGameOver();
+	if (!itemCapture) popSnakeTail();
 	unshiftSnakeHead(squareNumber);
 };
 
 const moveDown = () => {
 	let squareNumber = snakeHeadNumber + rowLength;
 	let itemCapture = checkItemCapture(squareNumber);
-	if (itemCapture) {
-		processItemCapture();
-	}
+	if (itemCapture) processItemCapture();
 	if (
 		squareNumber > numberOfSquaresIndex ||
 		checkSnakeHitItself(squareNumber)
-	) {
-		clearInterval(intervalID);
-		gameOver = true;
-		return gameOverAlert();
-	}
-	if (!itemCapture) {
-		popSnakeTail();
-	}
+	)
+		return processGameOver();
+	if (!itemCapture) popSnakeTail();
 	unshiftSnakeHead(squareNumber);
 };
 
