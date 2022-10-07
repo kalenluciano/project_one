@@ -128,7 +128,7 @@ const addSnakeFaceToHead = (snakeHeadSquare, snakeHeadNumber) => {
 	const snakeEyes = document.createElement('img');
 	snakeEyes.classList.add('eyes');
 	snakeEyes.setAttribute('id', `${snakeHeadNumber}`);
-	snakeEyes.setAttribute('src', './assets/snake-eyes.png');
+	snakeEyes.setAttribute('src', './assets/snake-eyes.png'); // snake eyes image source: https://pixabay.com/vectors/vector-eyes-inkscape-eyes-eyes-1639322/
 	snakeEyes.setAttribute('alt', 'snake eyes');
 	snakeHeadSquare.firstChild.appendChild(snakeEyes);
 };
@@ -252,7 +252,7 @@ const convertSquareToItem = (square, squareID) => {
 	const circle = document.createElement('img');
 	circle.classList.add('apple');
 	circle.setAttribute('id', `${squareID}`);
-	circle.setAttribute('src', './assets/apple-image.png');
+	circle.setAttribute('src', './assets/apple-image.png'); // apple image source: https://pixabay.com/vectors/apple-fruit-red-healthy-diet-4967157/
 	circle.setAttribute('alt', 'apple');
 	square.appendChild(circle);
 };
@@ -354,7 +354,7 @@ const replay = () => {
 };
 
 // Mobile friendly event listener functions
-
+// Used this Stack Overflow article as inspiration for the swiping feature: https://stackoverflow.com/questions/2264072/detect-a-finger-swipe-through-javascript-on-the-iphone-and-android
 const updateTouchStart = (event) => {
 	touchStartX = event.changedTouches[0].screenX;
 	touchStartY = event.changedTouches[0].screenY;
@@ -449,6 +449,7 @@ initializeGame();
 for (let button of chooseLevelButtons) {
 	button.addEventListener('click', (event) => chooseLevel(event));
 }
+// Used MDN as a resource for the keydown event: https://developer.mozilla.org/en-US/docs/Web/API/Element/keydown_event
 document.body.addEventListener('keydown', (event) => moveSnake(event));
 document.body.addEventListener('touchstart', (event) =>
 	updateTouchStart(event)
