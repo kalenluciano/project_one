@@ -18,13 +18,45 @@ This is an in-browser version of the game Snake. In the game, the user controls 
 
 -   HTML
 -   CSS
+    -   Grid
+    -   Flexbox
 -   JavaScript
+    -   Arrays
+        -   .push()
+        -   .pop()
+        -   .unshift()
+        -   .splice()
+    -   Loops
+        -   for
+        -   for of
+        -   while
+    -   Math
+        -   .random()
+        -   .floor()
+        -   .abs()
+    -   DOM
+        -   .querySelector()
+        -   .querySelectorAll()
+        -   .createElement()
+        -   .setAttribute()
+        -   .classList.add()
+        -   .appendChild()
+        -   .removeChild()
+        -   .hasChildNodes()
+    -   Event listeners
+        -   ‘click’
+        -   ‘keydown’
+        -   ‘touchstart’
+        -   ‘touchend’
+    -   Switch statements
+    -   setInterval()
+    -   clearInterval()
 
 ---
 
 ### **_Getting Started_**
 
-The project itself was deployed and can be viewed [here]().
+The project itself was deployed and can be viewed [here](https://snake-video-game.surge.sh/).
 
 -   Use the left or right arrow to move horizontally.
 -   Use the up or down arrow to move vertically.
@@ -37,23 +69,38 @@ The project itself was deployed and can be viewed [here]().
 
 #### Landing Page
 
-![Image]()
+![Image](./assets/home-page.png)
 
-#### Gameplay
+#### Initial Game Play
 
-![Image]()
+![Image](./assets/starting-game.png)
+
+#### Game Play
+
+![Image](/assets/game-play.png)
+
+#### Game Over
+
+![Image](./assets/game-over.png)
 
 ---
 
 ### **_Future Updates_**
 
--   [ ]
--   [ ]
--   [ ]
--   [ ]
+-   [ ] Add dark mode feature
+-   [ ] Make sounds when the snake collects an item or hits a boundary
+-   [ ] Make an animation when the snake hits a boundary
+-   [ ] Toggle sound on and off
+-   [ ] Disable webpage scroll on mobile display
 
 ---
 
 ### **_Credits_**
 
 A [Trello board](https://trello.com/invite/b/reTJzqZO/ee88493ce0669b57fdd76c8c504e1cde/project-one) was used to keep track of development progress.
+
+This Stack Overflow [article](https://stackoverflow.com/questions/2264072/detect-a-finger-swipe-through-javascript-on-the-iphone-and-android) served as inspiration for the swiping feature available on mobile devices.
+
+Snake eyes image found [here](https://pixabay.com/vectors/vector-eyes-inkscape-eyes-eyes-1639322/).
+
+Apple image found [here](https://pixabay.com/vectors/apple-fruit-red-healthy-diet-4967157/).
